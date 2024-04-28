@@ -1,0 +1,32 @@
+version: "2.26"
+services:
+  backend-blog-app:
+    image: node:20
+    container_name: backend_blog_app
+    working_dir: /app
+    command: npm run dev  # Notez que c'est 'command', pas 'commands'
+    ports: 
+      - "8000:8000"
+    volumes:
+      - "./backend/:/app"
+  frontend-blog-app:
+    image: node:20
+    container_name: frontend_blog_app
+    working_dir: /src
+    command: npm start  
+    ports: 
+      - "3000:3000"
+    volumes:
+      - "./frontend/:/src"
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: nesrine
+      MONGO_INITDB_ROOT_PASSWORD: 12345678
+    volumes :
+      - "db-data:/data/db"   
+volumes :
+  db-data: {}

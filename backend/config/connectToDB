@@ -1,0 +1,11 @@
+const mongoose = require("mongoose")
+module.exports=async()=>{
+    try{
+        await mongoose.connect(process.env.MONGODB_url)
+        console.log("connected to mongoDB ^_^ ")
+
+    }
+    catch(err){
+        console.log ("connection failed to mongodb ! ",err)
+    }
+}
